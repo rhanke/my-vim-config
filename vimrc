@@ -78,7 +78,7 @@ let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_temporary_dir = my_plugin_cache_path . 'neocon'
 
 " NeoComplCache-Snippets configuration
-g:neocomplcache_snippets_dir = my_vimlib_path . '/snippets'
+let g:neocomplcache_snippets_dir = my_vimlib_path . '/snippets'
 imap <C-k> <Plug>(neocomplcache_snippets_expand)
 smap <C-k> <Plug>(neocomplcache_snippets_expand)
 
