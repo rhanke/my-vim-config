@@ -46,6 +46,7 @@ NeoBundle 'thinca/vim-unite-history'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-indent'
 NeoBundle 'Raimondi/delimitMate'
+NeoBundle 'Lokaltog/vim-powerline'
 
 " Installation check.
 if neobundle#exists_not_installed_bundles()
@@ -100,7 +101,8 @@ let g:vimfiler_data_directory = my_plugin_cache_path . 'vimfiler'
 
 filetype plugin indent on
 
-autocmd FileType c,cpp set number cindent 
-autocmd FileType objc set number cindent cinwords=if,else,while,do,for,switch,[
-autocmd FileType haskell set number autoindent
+autocmd FileType c,cpp setlocal number cindent
+autocmd FileType objc setlocal number cindent cinwords=if,else,while,do,for,switch,[
+autocmd FileType haskell setlocal number autoindent
+autocmd FileType racket setlocal number
 
