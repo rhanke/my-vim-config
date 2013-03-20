@@ -26,7 +26,7 @@ NeoBundle 'Shougo/vimproc', {
 
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'ujihisa/neco-ghc'
-NeoBundle 'Shougo/neocomplcache-snippets-complete'
+NeoBundle 'Shougo/neosnippet'
 NeoBundle 'eagletmt/ghcmod-vim'
 NeoBundle 'oceandeep'
 NeoBundle 'altercation/vim-colors-solarized'
@@ -39,6 +39,7 @@ NeoBundle 'tsukkee/unite-tag'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'gregsexton/gitv'
 NeoBundle 'rygwdn/vim-conque'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'wlangstroth/vim-racket'
@@ -47,6 +48,8 @@ NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-indent'
 NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'spolu/dwm.vim'
+NeoBundle 'tpope/vim-markdown'
 
 " Installation check.
 if neobundle#exists_not_installed_bundles()
@@ -56,6 +59,7 @@ if neobundle#exists_not_installed_bundles()
   "finish
 endif
 
+set completeopt-=preview
 set softtabstop=2
 set shiftwidth=2
 set expandtab
@@ -77,10 +81,17 @@ let mapleader=','
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_temporary_dir = my_plugin_cache_path . 'neocon'
 
-" NeoComplCache-Snippets configuration
-let g:neocomplcache_snippets_dir = my_vimlib_path . '/snippets'
-imap <C-k> <Plug>(neocomplcache_snippets_expand)
-smap <C-k> <Plug>(neocomplcache_snippets_expand)
+" NeoSnippet configuration
+let g:neosnippet#snippets_directory = my_vimlib_path . '/snippets'
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
+" neco-ghc configuration
+let g:necoghc_enable_detailed_browse = 1
 
 " Vim2hs configuration
 let g:haskell_conceal_enumerations = 0
@@ -98,6 +109,16 @@ let g:syntastic_mode_map = { 'mode': 'passive',
 " VimFiler configuration
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_data_directory = my_plugin_cache_path . 'vimfiler'
+
+" dwm configuration
+let g:dwm_map_keys=0 " Some default keybindings suck
+nnoremap <silent> <C-J> <C-W>w
+nnoremap <silent> <C-K> <C-W>W
+nnoremap <silent> <C-,> :call DWM_Rotate(0)<CR>
+nnoremap <silent> <C-.> :call DWM_Rotate(1)<CR>
+
+nnoremap <silent> <C-N> :call DWM_New()<CR>
+nnoremap <silent> <C-Space> :call DWM_Focus()<CR>
 
 filetype plugin indent on
 
