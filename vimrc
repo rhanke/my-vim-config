@@ -46,7 +46,7 @@ NeoBundle 'wlangstroth/vim-racket'
 NeoBundle 'thinca/vim-unite-history'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-indent'
-NeoBundle 'Raimondi/delimitMate'
+NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'spolu/dwm.vim'
 NeoBundle 'tpope/vim-markdown'
@@ -128,4 +128,5 @@ autocmd FileType haskell setlocal number autoindent
 autocmd FileType racket setlocal number
 autocmd FileType markdown setlocal softtabstop=4 shiftwidth=4 autoindent linebreak textwidth=80 formatoptions=tqwan21
 autocmd FileType markdown nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
+autocmd FileType markdown let b:autopairs_loaded=1
 
