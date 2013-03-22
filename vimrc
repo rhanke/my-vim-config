@@ -126,4 +126,6 @@ autocmd FileType c,cpp setlocal number cindent
 autocmd FileType objc setlocal number cindent cinwords=if,else,while,do,for,switch,[
 autocmd FileType haskell setlocal number autoindent
 autocmd FileType racket setlocal number
+autocmd FileType markdown setlocal softtabstop=4 shiftwidth=4 autoindent linebreak textwidth=80 formatoptions=tqwan21
+autocmd FileType markdown nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
 
