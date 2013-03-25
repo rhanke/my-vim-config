@@ -1,15 +1,24 @@
 
 set encoding=utf-8
+set nocompatible
 
-let my_vimlib_path = '~/.vim'
+let my_vimlib_path = $VIMUSERRUNTIME
+if my_vimlib_path == ''
+  let my_vimlib_path = '~/.vim'
+endif
 let my_plugin_cache_path = my_vimlib_path . '/caches/'
 let $MYVIMLIBRARY = my_vimlib_path
+if has('win32')
+  let &viminfo = &viminfo . ',n' . my_vimlib_path . '/viminfo'
+endif
 
 " Start neobundle
-set nocompatible
 filetype off
 if has('vim_starting')
   set runtimepath^=$MYVIMLIBRARY/bundle/neobundle.vim/
+endif
+if has('win32')
+  let g:neobundle#types#git#default_protocol = 'https'
 endif
 call neobundle#rc(expand(my_vimlib_path . '/bundle/'))
 
@@ -17,7 +26,7 @@ call neobundle#rc(expand(my_vimlib_path . '/bundle/'))
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimproc', {
               \ 'build' : {
-              \     'windows' : 'echo "https://github.com/Shougo/vimproc/downloads"',
+              \     'windows' : 'vcmake make_msvc32.mak',
               \     'cygwin' : 'make -f make_cygwin.mak',
               \     'mac' : 'make -f make_mac.mak',
               \     'unix' : 'make -f make_unix.mak',
