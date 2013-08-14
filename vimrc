@@ -56,7 +56,7 @@ NeoBundle 'thinca/vim-unite-history'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-indent'
 NeoBundle 'jiangmiao/auto-pairs'
-NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'bling/vim-airline'
 NeoBundle 'spolu/dwm.vim'
 NeoBundle 'tpope/vim-markdown'
 
@@ -128,6 +128,10 @@ nnoremap <silent> <C-.> :call DWM_Rotate(1)<CR>
 
 nnoremap <silent> <C-N> :call DWM_New()<CR>
 nnoremap <silent> <C-Space> :call DWM_Focus()<CR>
+
+" Airline configuration
+let g:airline_theme='solarized'
+let g:airline_detect_whitespace=0 "disabled
 
 filetype plugin indent on
 
