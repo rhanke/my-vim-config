@@ -109,7 +109,7 @@ map <C-p> :call unite#start(['file_rec', '!'], { 'is_insert': 1 })<CR>
 
 " Syntastic configuration (for now off by default)
 let g:syntastic_mode_map = { 'mode': 'passive',
-                           \ 'active_filetypes': [],
+                           \ 'active_filetypes': ['haskell'],
                            \ 'passive_filetypes': [] }
 
 " VimFiler configuration
@@ -128,7 +128,8 @@ nnoremap <silent> <C-Space> :call DWM_Focus()<CR>
 
 " Airline configuration
 let g:airline_theme='solarized'
-let g:airline_detect_whitespace=0 "disabled
+let g:airline_detect_whitespace = 0 " disabled
+let g:airline_powerline_fonts = 1
 
 filetype plugin indent on
 
