@@ -33,32 +33,29 @@ NeoBundle 'Shougo/vimproc', {
               \    },
               \ }
 
+NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'ujihisa/neco-ghc'
-NeoBundle 'Shougo/neosnippet'
 NeoBundle 'eagletmt/ghcmod-vim'
+NeoBundle 'dag/vim2hs'
 NeoBundle 'oceandeep'
 NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'dag/vim2hs'
 NeoBundle 'godlygeek/tabular'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'eagletmt/unite-haddock'
-NeoBundle 'ujihisa/unite-colorscheme'
-NeoBundle 'tsukkee/unite-tag'
-NeoBundle 'Shougo/vimfiler'
+NeoBundle 'eagletmt/unite-haddock', { 'depends': 'Shougo/unite.vim' }
+NeoBundle 'ujihisa/unite-colorscheme', { 'depends': 'Shougo/unite.vim' }
+NeoBundle 'tsukkee/unite-tag', { 'depends': 'Shougo/unite.vim' }
+NeoBundle 'thinca/vim-unite-history', { 'depends': 'Shougo/unite.vim' }
+NeoBundle 'Shougo/vimfiler', { 'depends': 'Shougo/unite.vim' }
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'gregsexton/gitv'
+NeoBundle 'gregsexton/gitv', { 'depends': 'tpope/vim-fugitive' }
 NeoBundle 'rygwdn/vim-conque'
 NeoBundle 'Lokaltog/vim-easymotion'
-NeoBundle 'wlangstroth/vim-racket'
-NeoBundle 'thinca/vim-unite-history'
-NeoBundle 'kana/vim-textobj-user'
-NeoBundle 'kana/vim-textobj-indent'
+NeoBundle 'kana/vim-textobj-indent', { 'depends': 'kana/vim-textobj-user' }
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'spolu/dwm.vim'
-NeoBundle 'tpope/vim-markdown'
+NeoBundle 'plasticboy/vim-markdown'
 
 " Installation check.
 if neobundle#exists_not_installed_bundles()
@@ -120,7 +117,7 @@ let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_data_directory = my_plugin_cache_path . 'vimfiler'
 
 " dwm configuration
-let g:dwm_map_keys=0 " Some default keybindings suck
+let g:dwm_map_keys = 0 " Some default keybindings suck
 nnoremap <silent> <C-J> <C-W>w
 nnoremap <silent> <C-K> <C-W>W
 nnoremap <silent> <C-,> :call DWM_Rotate(0)<CR>
@@ -138,8 +135,8 @@ filetype plugin indent on
 autocmd FileType c,cpp setlocal number cindent
 autocmd FileType objc setlocal number cindent cinwords=if,else,while,do,for,switch,[
 autocmd FileType haskell setlocal number autoindent
-autocmd FileType racket setlocal number
-autocmd FileType markdown setlocal softtabstop=4 shiftwidth=4 autoindent linebreak textwidth=80 formatoptions=tqwan21
-autocmd FileType markdown nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
-autocmd FileType markdown let b:autopairs_loaded=1
+autocmd FileType mkd setlocal softtabstop=4 shiftwidth=4 autoindent linebreak nojoinspaces textwidth=80 formatoptions=tnaw
+                                \ formatlistpat=^\\s*\\([*+-]\\\|\\((*\\d\\+[.)]\\+\\)\\\|\\((*\\l[.)]\\+\\)\\)\\s\\+
+autocmd FileType mkd nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
+autocmd FileType mkd let b:autopairs_loaded=1
 
