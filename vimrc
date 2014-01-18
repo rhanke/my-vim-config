@@ -23,7 +23,7 @@ endif
 call neobundle#rc(expand(my_vimlib_path . '/bundle/'))
 
 " Bundles
-NeoBundle 'Shougo/neobundle.vim'
+NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimproc', {
               \ 'build' : {
               \     'windows' : 'vcmake make_msvc32.mak',
