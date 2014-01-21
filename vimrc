@@ -105,7 +105,7 @@ let g:haskell_conceal_enumerations = 0
 " Unite configuration
 let g:unite_data_directory = my_plugin_cache_path . 'unite'
 call unite#set_profile('', 'ignorecase', 1)
-map <C-p> :call unite#start(['file_rec', '!'], { 'is_insert': 1 })<CR>
+map <C-p> :call unite#start([['file_rec', '!']], { 'is_insert': 1 })<CR>
 
 " Syntastic configuration (for now off by default)
 let g:syntastic_mode_map = { 'mode': 'passive',
