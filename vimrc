@@ -131,6 +131,9 @@ let g:airline_theme='solarized'
 let g:airline_detect_whitespace = 0 " disabled
 let g:airline_powerline_fonts = 1
 
+" vim-markdown configuration
+let g:vim_markdown_folding_disabled=1
+
 filetype plugin indent on
 
 autocmd FileType c,cpp setlocal number cindent
