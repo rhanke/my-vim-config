@@ -34,7 +34,7 @@ NeoBundle 'Shougo/vimproc', {
               \ }
 
 NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neocomplete'
 NeoBundle 'ujihisa/neco-ghc'
 NeoBundle 'eagletmt/ghcmod-vim'
 NeoBundle 'dag/vim2hs'
@@ -83,9 +83,8 @@ set virtualedit=block
 syntax on
 let mapleader=','
 
-" NeoComplCache configuration
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_temporary_dir = my_plugin_cache_path . 'neocon'
+" NeoComplete configuration
+let g:neocomplete#enable_at_startup = 1
 
 " NeoSnippet configuration
 let g:neosnippet#snippets_directory = my_vimlib_path . '/snippets'
