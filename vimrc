@@ -54,7 +54,7 @@ NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'kana/vim-textobj-indent', { 'depends': 'kana/vim-textobj-user' }
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'bling/vim-airline'
-NeoBundle 'spolu/dwm.vim'
+NeoBundle 'zhaocai/GoldenView.Vim'
 NeoBundle 'plasticboy/vim-markdown'
 
 " Installation check.
@@ -115,15 +115,15 @@ let g:syntastic_mode_map = { 'mode': 'passive',
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_data_directory = my_plugin_cache_path . 'vimfiler'
 
-" dwm configuration
-let g:dwm_map_keys = 0 " Some default keybindings suck
-nnoremap <silent> <C-J> <C-W>w
-nnoremap <silent> <C-K> <C-W>W
-nnoremap <silent> <C-,> :call DWM_Rotate(0)<CR>
-nnoremap <silent> <C-.> :call DWM_Rotate(1)<CR>
+" GoldenView configuration
+let g:goldenview__enable_default_mapping = 0
+nmap <silent> <C-S>     <Plug>GoldenViewSplit
 
-nnoremap <silent> <C-N> :call DWM_New()<CR>
-nnoremap <silent> <C-Space> :call DWM_Focus()<CR>
+nmap <silent> <C-Space> <Plug>GoldenViewSwitchMain
+nmap <silent> <C-X>     <Plug>GoldenViewSwitchToggle
+
+nmap <silent> <C-J>  <Plug>GoldenViewNext
+nmap <silent> <C-K>  <Plug>GoldenViewPrevious
 
 " Airline configuration
 let g:airline_theme='solarized'
