@@ -56,6 +56,7 @@ NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'zhaocai/GoldenView.Vim'
 NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'vim-voom/VOoM'
 
 " Installation check.
 if neobundle#exists_not_installed_bundles()
