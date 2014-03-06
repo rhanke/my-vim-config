@@ -86,6 +86,7 @@ let mapleader=','
 
 " NeoComplete configuration
 let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#data_directory = my_plugin_cache_path . 'neocomplete'
 
 " NeoSnippet configuration
 let g:neosnippet#snippets_directory = my_vimlib_path . '/snippets'
