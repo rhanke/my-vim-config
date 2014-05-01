@@ -124,8 +124,8 @@ nmap <silent> <C-S>     <Plug>GoldenViewSplit
 nmap <silent> <C-Space> <Plug>GoldenViewSwitchMain
 nmap <silent> <C-X>     <Plug>GoldenViewSwitchToggle
 
-nmap <silent> <C-J>  <Plug>GoldenViewNext
-nmap <silent> <C-K>  <Plug>GoldenViewPrevious
+nmap <silent> <C-J>  <Plug>GoldenViewPrevious
+nmap <silent> <C-K>  <Plug>GoldenViewNext
 
 " Airline configuration
 let g:airline_theme='solarized'
