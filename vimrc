@@ -40,6 +40,7 @@ NeoBundle 'eagletmt/ghcmod-vim'
 NeoBundle 'dag/vim2hs'
 NeoBundle 'oceandeep'
 NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'eagletmt/unite-haddock', { 'depends': 'Shougo/unite.vim' }
 NeoBundle 'ujihisa/unite-colorscheme', { 'depends': 'Shougo/unite.vim' }
@@ -128,7 +129,6 @@ nmap <silent> <C-J>  <Plug>GoldenViewPrevious
 nmap <silent> <C-K>  <Plug>GoldenViewNext
 
 " Airline configuration
-let g:airline_theme='solarized'
 let g:airline_detect_whitespace = 0 " disabled
 let g:airline_powerline_fonts = 1
 

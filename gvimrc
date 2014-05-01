@@ -10,6 +10,6 @@ else
   set gfn=DejaVu_Sans_Mono_for_Powerline:h12,Inconsolata:h15,Menlo:h13
 endif
 
-set background=light
-colo solarized
+set background=dark
+colo base16-ocean
 
