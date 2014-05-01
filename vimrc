@@ -35,7 +35,7 @@ NeoBundle 'Shougo/vimproc', {
 
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neocomplete'
-NeoBundle 'ujihisa/neco-ghc'
+NeoBundle 'eagletmt/neco-ghc'
 NeoBundle 'eagletmt/ghcmod-vim'
 NeoBundle 'dag/vim2hs'
 NeoBundle 'oceandeep'
