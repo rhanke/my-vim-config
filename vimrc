@@ -4,7 +4,7 @@ set nocompatible
 
 let my_vimlib_path = $VIMUSERRUNTIME
 if my_vimlib_path == ''
-  let my_vimlib_path = '~/.vim'
+  let my_vimlib_path = $HOME . '/.vim'
 endif
 let my_plugin_cache_path = my_vimlib_path . '/caches/'
 let $MYVIMLIBRARY = my_vimlib_path
@@ -33,15 +33,17 @@ NeoBundle 'Shougo/vimproc', {
               \    },
               \ }
 
-NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neocomplete'
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'honza/vim-snippets', { 'depends': 'SirVer/ultisnips' }
 NeoBundle 'eagletmt/neco-ghc'
 NeoBundle 'eagletmt/ghcmod-vim'
 NeoBundle 'dag/vim2hs'
+NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'oceandeep'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'chriskempson/base16-vim'
-NeoBundle 'godlygeek/tabular'
+NeoBundle 'junegunn/vim-easy-align'
 NeoBundle 'eagletmt/unite-haddock', { 'depends': 'Shougo/unite.vim' }
 NeoBundle 'ujihisa/unite-colorscheme', { 'depends': 'Shougo/unite.vim' }
 NeoBundle 'tsukkee/unite-tag', { 'depends': 'Shougo/unite.vim' }
@@ -55,7 +57,7 @@ NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'kana/vim-textobj-indent', { 'depends': 'kana/vim-textobj-user' }
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'bling/vim-airline'
-NeoBundle 'zhaocai/GoldenView.Vim'
+NeoBundle 'szw/vim-ctrlspace'
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'vim-voom/VOoM'
 
@@ -89,15 +91,6 @@ let mapleader=','
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#data_directory = my_plugin_cache_path . 'neocomplete'
 
-" NeoSnippet configuration
-let g:neosnippet#snippets_directory = my_vimlib_path . '/snippets'
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
-
 " neco-ghc configuration
 let g:necoghc_enable_detailed_browse = 1
 
@@ -109,6 +102,10 @@ let g:unite_data_directory = my_plugin_cache_path . 'unite'
 call unite#set_profile('', 'ignorecase', 1)
 map <C-p> :call unite#start([['file_rec', '!']], { 'is_insert': 1 })<CR>
 
+" Easy Align configuration
+vmap <Enter> <Plug>(EasyAlign)
+nmap <Leader>a <Plug>(EasyAlign)
+
 " Syntastic configuration (for now off by default)
 let g:syntastic_mode_map = { 'mode': 'passive',
                            \ 'active_filetypes': ['haskell'],
@@ -118,22 +115,25 @@ let g:syntastic_mode_map = { 'mode': 'passive',
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_data_directory = my_plugin_cache_path . 'vimfiler'
 
-" GoldenView configuration
-let g:goldenview__enable_default_mapping = 0
-nmap <silent> <C-S>     <Plug>GoldenViewSplit
-
-nmap <silent> <C-Space> <Plug>GoldenViewSwitchMain
-nmap <silent> <C-X>     <Plug>GoldenViewSwitchToggle
-
-nmap <silent> <C-J>  <Plug>GoldenViewPrevious
-nmap <silent> <C-K>  <Plug>GoldenViewNext
-
 " Airline configuration
 let g:airline_detect_whitespace = 0 " disabled
 let g:airline_powerline_fonts = 1
+let g:airline_exclude_preview = 1   " for CtrlSpace
 
 " vim-markdown configuration
 let g:vim_markdown_folding_disabled=1
+
+" CtrlSpace configuration
+let g:ctrlspace_project_root_markers = [".git", ".cabal-sandbox", ".svn"]
+let g:ctrlspace_cache_dir = fnamemodify(my_plugin_cache_path, ":h:p")
+let g:ctrlspace_ignored_files = '\v(tmp|temp|dist|build)[\/]'
+
+function s:adjust_ctrlspace_colors()
+  let css = airline#themes#get_highlight('CursorLine')
+  exe "hi CtrlSpaceStatus guibg=" . css[1]
+endfunction
+
+autocmd ColorScheme * call s:adjust_ctrlspace_colors()
 
 filetype plugin indent on
 
