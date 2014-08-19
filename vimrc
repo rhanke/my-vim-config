@@ -26,7 +26,7 @@ call neobundle#rc(expand(my_vimlib_path . '/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimproc', {
               \ 'build' : {
-              \     'windows' : 'vcmake make_msvc32.mak',
+              \     'windows' : 'tools\\update-dll-mingw',
               \     'cygwin' : 'make -f make_cygwin.mak',
               \     'mac' : 'make -f make_mac.mak',
               \     'unix' : 'make -f make_unix.mak',
@@ -85,7 +85,7 @@ set wildmenu
 set virtualedit=block
 
 syntax on
-let mapleader=','
+let mapleader='-'
 
 " NeoComplete configuration
 let g:neocomplete#enable_at_startup = 1
@@ -100,7 +100,6 @@ let g:haskell_conceal_enumerations = 0
 " Unite configuration
 let g:unite_data_directory = my_plugin_cache_path . 'unite'
 call unite#set_profile('', 'ignorecase', 1)
-map <C-p> :call unite#start([['file_rec', '!']], { 'is_insert': 1 })<CR>
 
 " Easy Align configuration
 vmap <Enter> <Plug>(EasyAlign)
@@ -110,6 +109,7 @@ nmap <Leader>a <Plug>(EasyAlign)
 let g:syntastic_mode_map = { 'mode': 'passive',
                            \ 'active_filetypes': ['haskell'],
                            \ 'passive_filetypes': [] }
+let g:syntastic_aggregate_errors = 1
 
 " VimFiler configuration
 let g:vimfiler_as_default_explorer = 1
@@ -117,7 +117,7 @@ let g:vimfiler_data_directory = my_plugin_cache_path . 'vimfiler'
 
 " Airline configuration
 let g:airline_detect_whitespace = 0 " disabled
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = !has('win32')
 let g:airline_exclude_preview = 1   " for CtrlSpace
 
 " vim-markdown configuration
@@ -125,15 +125,35 @@ let g:vim_markdown_folding_disabled=1
 
 " CtrlSpace configuration
 let g:ctrlspace_project_root_markers = [".git", ".cabal-sandbox", ".svn"]
-let g:ctrlspace_cache_dir = fnamemodify(my_plugin_cache_path, ":h:p")
+let g:ctrlspace_cache_dir = my_plugin_cache_path . 'ctrlspace'
+if finddir(g:ctrlspace_cache_dir) == ""
+  call mkdir(g:ctrlspace_cache_dir)
+endif
 let g:ctrlspace_ignored_files = '\v(tmp|temp|dist|build)[\/]'
-
+let g:ctrlspace_use_ruby_bindings = has("ruby")
+let g:ctrlspace_unicode_font = !has("win32")
+if executable("ag")
+  let g:ctrlspace_glob_command = 'ag -l --nocolor -g ""'
+endif
 function s:adjust_ctrlspace_colors()
   let css = airline#themes#get_highlight('CursorLine')
   exe "hi CtrlSpaceStatus guibg=" . css[1]
 endfunction
 
 autocmd ColorScheme * call s:adjust_ctrlspace_colors()
+
+" Keybindings for Haskell
+nmap <silent> <leader>ht :GhcModType<CR>
+nmap <silent> <leader>hi :GhcModTypeInsert<CR>
+nmap <silent> <leader>hc :GhcModTypeClear<CR>
+
+" Keybindings for Unite
+nmap <silent> <leader>uh :Unite -start-insert hoogle<CR>
+nmap <silent> <leader>ud :Unite -start-insert haddock<CR>
+nmap <silent> <leader>uc :Unite history/command<CR>
+nmap <silent> <leader>us :Unite history/search<CR>
+let g:unite_source_history_yank_enable = 1
+nmap <silent> <leader>uy :Unite history/yank<CR>
 
 filetype plugin indent on
 
