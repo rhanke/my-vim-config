@@ -13,14 +13,13 @@ if has('win32')
 endif
 
 " Start neobundle
-filetype off
 if has('vim_starting')
   set runtimepath^=$MYVIMLIBRARY/bundle/neobundle.vim/
 endif
 if has('win32')
   let g:neobundle#types#git#default_protocol = 'https'
 endif
-call neobundle#rc(expand(my_vimlib_path . '/bundle/'))
+call neobundle#begin(expand(my_vimlib_path . '/bundle/'))
 
 " Bundles
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -61,6 +60,8 @@ NeoBundle 'szw/vim-ctrlspace'
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'vim-voom/VOoM'
 
+call neobundle#end()
+
 " Installation check.
 if neobundle#exists_not_installed_bundles()
   echomsg 'Not installed bundles : ' .
@@ -99,7 +100,9 @@ let g:haskell_conceal_enumerations = 0
 
 " Unite configuration
 let g:unite_data_directory = my_plugin_cache_path . 'unite'
-call unite#set_profile('', 'ignorecase', 1)
+call unite#custom#profile('default', 'context', {
+\       'ignorecase': 1
+\     })
 
 " Easy Align configuration
 vmap <Enter> <Plug>(EasyAlign)
