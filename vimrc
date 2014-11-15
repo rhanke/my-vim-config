@@ -37,7 +37,7 @@ NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets', { 'depends': 'SirVer/ultisnips' }
 NeoBundle 'eagletmt/neco-ghc'
 NeoBundle 'eagletmt/ghcmod-vim'
-NeoBundle 'dag/vim2hs'
+NeoBundle 'raichoo/haskell-vim'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'oceandeep'
 NeoBundle 'altercation/vim-colors-solarized'
@@ -54,7 +54,8 @@ NeoBundle 'gregsexton/gitv', { 'depends': 'tpope/vim-fugitive' }
 NeoBundle 'rygwdn/vim-conque'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'kana/vim-textobj-indent', { 'depends': 'kana/vim-textobj-user' }
-NeoBundle 'jiangmiao/auto-pairs'
+NeoBundle 'bkad/CamelCaseMotion'
+NeoBundle 'cohama/lexima.vim'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'szw/vim-ctrlspace'
 NeoBundle 'plasticboy/vim-markdown'
@@ -95,8 +96,8 @@ let g:neocomplete#data_directory = my_plugin_cache_path . 'neocomplete'
 " neco-ghc configuration
 let g:necoghc_enable_detailed_browse = 1
 
-" Vim2hs configuration
-let g:haskell_conceal_enumerations = 0
+" haskell-vim configuration
+let g:haskell_enable_quantification = 1
 
 " Unite configuration
 let g:unite_data_directory = my_plugin_cache_path . 'unite'
@@ -125,6 +126,14 @@ let g:airline_exclude_preview = 1   " for CtrlSpace
 
 " vim-markdown configuration
 let g:vim_markdown_folding_disabled=1
+
+" Lexima rules
+let g:lexima_no_default_rules = 1
+call lexima#set_default_rules()
+call lexima#add_rule({'filetype': 'haskell', 'char': '-', 'at': '{\%#}', 'input': '-', 'input_after': '-'})
+call lexima#add_rule({'filetype': 'haskell', 'char': '#', 'at': '{-\%#-}', 'input': '#', 'input_after': '#'})
+call lexima#add_rule({'filetype': 'haskell', 'char': '<Space>', 'at': '{-#\?\%##\?-}', 'input': ' ', 'input_after': ' '})
+call lexima#add_rule({'filetype': 'haskell', 'char': '<BS>', 'at': '{-#\?\%##\?-}', 'input': '<BS>', 'delete': 1})
 
 " CtrlSpace configuration
 let g:ctrlspace_project_root_markers = [".git", ".cabal-sandbox", ".svn"]
@@ -165,6 +174,5 @@ autocmd FileType objc setlocal number cindent cinwords=if,else,while,do,for,swit
 autocmd FileType haskell setlocal number autoindent
 autocmd FileType mkd setlocal softtabstop=4 shiftwidth=4 autoindent linebreak nojoinspaces textwidth=80 formatoptions=tnaw
                                 \ formatlistpat=^\\s*\\([*+-]\\\|\\((*\\d\\+[.)]\\+\\)\\\|\\((*\\l[.)]\\+\\)\\)\\s\\+
-autocmd FileType mkd nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
-autocmd FileType mkd let b:autopairs_loaded=1
+autocmd FileType mkd nnoremap <leader>m :silent !open -a 'Marked 2.app' '%:p'<cr>
 
