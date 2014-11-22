@@ -85,6 +85,20 @@ set hlsearch
 set incsearch
 set wildmenu
 set virtualedit=block
+set mouse=a
+
+" Base16 colors
+if !has('gui_running')
+  let g:base16_shell_path = '~/.config/base16-shell'
+  if finddir(g:base16_shell_path) == ''
+    unlet g:base16_shell_path
+  else
+    let base16colorspace=256
+  endif
+endif
+
+set background=dark
+colorscheme base16-ocean
 
 syntax on
 let mapleader='-'
@@ -149,7 +163,11 @@ if executable("ag")
 endif
 function s:adjust_ctrlspace_colors()
   let css = airline#themes#get_highlight('CursorLine')
-  exe "hi CtrlSpaceStatus guibg=" . css[1]
+  if has('gui_running')
+    exe "hi CtrlSpaceStatus guibg=" . css[1]
+  else
+    exe "hi CtrlSpaceStatus ctermbg=" . css[3]
+  endif
 endfunction
 
 autocmd ColorScheme * call s:adjust_ctrlspace_colors()

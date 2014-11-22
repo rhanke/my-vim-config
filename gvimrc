@@ -10,6 +10,3 @@ else
   set gfn=Source_Code_Pro_for_Powerline:h13,CamingoCode:h13,DejaVu_Sans_Mono_for_Powerline:h12,Inconsolata:h15,Menlo:h13
 endif
 
-set background=dark
-colo base16-ocean
-
