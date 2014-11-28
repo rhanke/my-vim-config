@@ -39,6 +39,7 @@ NeoBundle 'eagletmt/neco-ghc'
 NeoBundle 'eagletmt/ghcmod-vim'
 NeoBundle 'raichoo/haskell-vim'
 NeoBundle 'tomtom/tcomment_vim'
+NeoBundle 'mbbill/undotree'
 NeoBundle 'oceandeep'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'chriskempson/base16-vim'
@@ -86,6 +87,12 @@ set incsearch
 set wildmenu
 set virtualedit=block
 set mouse=a
+
+" Persistent undo
+let &undodir = my_plugin_cache_path . 'undo'
+if finddir(&undodir) == ''
+  call mkdir(&undodir)
+endif
 
 " Base16 colors
 if !has('gui_running')
@@ -177,6 +184,9 @@ nmap <silent> <leader>ht :GhcModType<CR>
 nmap <silent> <leader>hi :GhcModTypeInsert<CR>
 nmap <silent> <leader>hc :GhcModTypeClear<CR>
 
+" Keybinding for Undotree
+nmap <silent> <leader>z :UndotreeToggle<CR>
+
 " Keybindings for Unite
 nmap <silent> <leader>uh :Unite -start-insert hoogle<CR>
 nmap <silent> <leader>ud :Unite -start-insert haddock<CR>
@@ -187,10 +197,9 @@ nmap <silent> <leader>uy :Unite history/yank<CR>
 
 filetype plugin indent on
 
-autocmd FileType c,cpp setlocal number cindent
+autocmd FileType c,cpp setlocal number cindent undofile
 autocmd FileType objc setlocal number cindent cinwords=if,else,while,do,for,switch,[
-autocmd FileType haskell setlocal number autoindent
-autocmd FileType mkd setlocal softtabstop=4 shiftwidth=4 autoindent linebreak nojoinspaces textwidth=80 formatoptions=tnaw
-                                \ formatlistpat=^\\s*\\([*+-]\\\|\\((*\\d\\+[.)]\\+\\)\\\|\\((*\\l[.)]\\+\\)\\)\\s\\+
+autocmd FileType haskell setlocal number autoindent undofile
+autocmd FileType mkd setlocal softtabstop=4 shiftwidth=4 autoindent linebreak nojoinspaces textwidth=80 formatoptions=tnaw undofile
 autocmd FileType mkd nnoremap <leader>m :silent !open -a 'Marked 2.app' '%:p'<cr>
 
