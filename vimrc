@@ -52,7 +52,6 @@ NeoBundle 'Shougo/vimfiler', { 'depends': 'Shougo/unite.vim' }
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'gregsexton/gitv', { 'depends': 'tpope/vim-fugitive' }
-NeoBundle 'rygwdn/vim-conque'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'kana/vim-textobj-indent', { 'depends': 'kana/vim-textobj-user' }
 NeoBundle 'bkad/CamelCaseMotion'
@@ -76,6 +75,7 @@ set completeopt-=preview
 set softtabstop=2
 set shiftwidth=2
 set expandtab
+set hidden
 set backspace=indent,eol,start
 set ruler
 set laststatus=2
@@ -141,9 +141,9 @@ let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_data_directory = my_plugin_cache_path . 'vimfiler'
 
 " Airline configuration
-let g:airline_detect_whitespace = 0 " disabled
 let g:airline_powerline_fonts = !has('win32')
 let g:airline_exclude_preview = 1   " for CtrlSpace
+let g:airline#extensions#whitespace#enabled = 0
 
 " vim-markdown configuration
 let g:vim_markdown_folding_disabled=1
