@@ -48,7 +48,9 @@ NeoBundle 'eagletmt/unite-haddock', { 'depends': 'Shougo/unite.vim' }
 NeoBundle 'ujihisa/unite-colorscheme', { 'depends': 'Shougo/unite.vim' }
 NeoBundle 'tsukkee/unite-tag', { 'depends': 'Shougo/unite.vim' }
 NeoBundle 'thinca/vim-unite-history', { 'depends': 'Shougo/unite.vim' }
+NeoBundle 'osyo-manga/unite-quickfix', { 'depends': 'Shougo/unite.vim' }
 NeoBundle 'Shougo/vimfiler', { 'depends': 'Shougo/unite.vim' }
+NeoBundle 'Shougo/neomru.vim', { 'depends': 'Shougo/unite.vim' }
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'gregsexton/gitv', { 'depends': 'tpope/vim-fugitive' }
@@ -190,6 +192,9 @@ nmap <silent> <leader>z :UndotreeToggle<CR>
 " Keybindings for Unite
 nmap <silent> <leader>uh :Unite -start-insert hoogle<CR>
 nmap <silent> <leader>ud :Unite -start-insert haddock<CR>
+nmap <silent> <leader>ul :Unite -winheight=10 -direction=botright location_list<CR>
+nmap <silent> <leader>uq :Unite -winheight=10 -direction=botright quickfix<CR>
+nmap <silent> <leader>ur :Unite file_mru<CR>
 nmap <silent> <leader>uc :Unite history/command<CR>
 nmap <silent> <leader>us :Unite history/search<CR>
 let g:unite_source_history_yank_enable = 1
