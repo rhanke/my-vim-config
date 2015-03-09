@@ -203,6 +203,8 @@ nmap <silent> <leader>uy :Unite history/yank<CR>
 
 filetype plugin indent on
 
+NeoBundleCheck
+
 autocmd FileType c,cpp setlocal number cindent undofile
 autocmd FileType objc setlocal number cindent cinwords=if,else,while,do,for,switch,[
 autocmd FileType haskell setlocal number autoindent undofile
