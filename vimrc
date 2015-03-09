@@ -62,6 +62,7 @@ NeoBundle 'bling/vim-airline'
 NeoBundle 'szw/vim-ctrlspace'
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'vim-voom/VOoM'
+NeoBundle 'ruedigerha/vim-fullscreen', { 'gui': 1 }
 
 call neobundle#end()
 
