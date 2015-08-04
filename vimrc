@@ -1,6 +1,7 @@
 
 set encoding=utf-8
 set nocompatible
+language de_DE.UTF-8
 
 let my_vimlib_path = $VIMUSERRUNTIME
 if my_vimlib_path == ''
