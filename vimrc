@@ -145,7 +145,7 @@ let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_data_directory = my_plugin_cache_path . 'vimfiler'
 
 " Airline configuration
-let g:airline_powerline_fonts = !has('win32')
+let g:airline_powerline_fonts = 1
 let g:airline_exclude_preview = 1   " for CtrlSpace
 let g:airline#extensions#whitespace#enabled = 0
 
@@ -168,7 +168,7 @@ if finddir(g:ctrlspace_cache_dir) == ""
 endif
 let g:ctrlspace_ignored_files = '\v(tmp|temp|dist|build)[\/]'
 let g:ctrlspace_use_ruby_bindings = has("ruby")
-let g:ctrlspace_unicode_font = !has("win32")
+let g:ctrlspace_unicode_font = 1
 if executable("ag")
   let g:ctrlspace_glob_command = 'ag -l --nocolor -g ""'
 endif
