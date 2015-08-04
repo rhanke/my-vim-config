@@ -37,7 +37,7 @@ NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets', { 'depends': 'SirVer/ultisnips' }
 NeoBundle 'eagletmt/neco-ghc'
 NeoBundle 'eagletmt/ghcmod-vim'
-NeoBundle 'raichoo/haskell-vim'
+NeoBundle 'neovimhaskell/haskell-vim'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'mbbill/undotree'
 NeoBundle 'oceandeep'
@@ -54,7 +54,7 @@ NeoBundle 'Shougo/neomru.vim', { 'depends': 'Shougo/unite.vim' }
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'gregsexton/gitv', { 'depends': 'tpope/vim-fugitive' }
-NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'easymotion/vim-easymotion'
 NeoBundle 'kana/vim-textobj-indent', { 'depends': 'kana/vim-textobj-user' }
 NeoBundle 'bkad/CamelCaseMotion'
 NeoBundle 'cohama/lexima.vim'
