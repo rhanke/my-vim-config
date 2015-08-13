@@ -161,27 +161,14 @@ call lexima#add_rule({'filetype': 'haskell', 'char': '<Space>', 'at': '{-#\?\%##
 call lexima#add_rule({'filetype': 'haskell', 'char': '<BS>', 'at': '{-#\?\%##\?-}', 'input': '<BS>', 'delete': 1})
 
 " CtrlSpace configuration
-let g:ctrlspace_project_root_markers = [".git", ".cabal-sandbox", ".svn"]
-let g:ctrlspace_cache_dir = my_plugin_cache_path . 'ctrlspace'
-if finddir(g:ctrlspace_cache_dir) == ""
-  call mkdir(g:ctrlspace_cache_dir)
+let g:CtrlSpaceCacheDir = my_plugin_cache_path . 'ctrlspace'
+if finddir(g:CtrlSpaceCacheDir) == ""
+  call mkdir(g:CtrlSpaceCacheDir)
 endif
-let g:ctrlspace_ignored_files = '\v(tmp|temp|dist|build)[\/]'
-let g:ctrlspace_use_ruby_bindings = has("ruby")
-let g:ctrlspace_unicode_font = 1
+let g:CtrlSpaceIgnoredFiles = '\v(tmp|temp|dist|build)[\/]'
 if executable("ag")
-  let g:ctrlspace_glob_command = 'ag -l --nocolor -g ""'
+  let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
 endif
-function s:adjust_ctrlspace_colors()
-  let css = airline#themes#get_highlight('CursorLine')
-  if has('gui_running')
-    exe "hi CtrlSpaceStatus guibg=" . css[1]
-  else
-    exe "hi CtrlSpaceStatus ctermbg=" . css[3]
-  endif
-endfunction
-
-autocmd ColorScheme * call s:adjust_ctrlspace_colors()
 
 " Keybindings for Haskell
 nmap <silent> <leader>ht :GhcModType<CR>
