@@ -118,6 +118,10 @@ let mapleader='-'
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#data_directory = my_plugin_cache_path . 'neocomplete'
 
+" neomru configuration
+let g:neomru#file_mru_path = my_plugin_cache_path . 'neomru/file'
+let g:neomru#directory_mru_path = my_plugin_cache_path . 'neomru/directory'
+
 " neco-ghc configuration
 let g:necoghc_enable_detailed_browse = 1
 
