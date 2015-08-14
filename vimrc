@@ -1,7 +1,9 @@
 
 set encoding=utf-8
 set nocompatible
-language de_DE.UTF-8
+if has("mac")
+  language de_DE.UTF-8
+endif
 
 let my_vimlib_path = $VIMUSERRUNTIME
 if my_vimlib_path == ''
@@ -36,8 +38,8 @@ NeoBundle 'Shougo/vimproc', {
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets', { 'depends': 'SirVer/ultisnips' }
-NeoBundle 'eagletmt/neco-ghc'
-NeoBundle 'eagletmt/ghcmod-vim'
+NeoBundle 'eagletmt/neco-ghc', { 'external_commands': 'ghc-mod' }
+NeoBundle 'eagletmt/ghcmod-vim', { 'external_commands': 'ghc-mod' }
 NeoBundle 'neovimhaskell/haskell-vim'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'mbbill/undotree'
