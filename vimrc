@@ -145,6 +145,9 @@ let g:syntastic_mode_map = { 'mode': 'passive',
                            \ 'active_filetypes': ['haskell'],
                            \ 'passive_filetypes': [] }
 let g:syntastic_aggregate_errors = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_wq = 0
 
 " VimFiler configuration
 let g:vimfiler_as_default_explorer = 1
