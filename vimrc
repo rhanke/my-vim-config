@@ -63,8 +63,11 @@ NeoBundle 'bkad/CamelCaseMotion'
 NeoBundle 'cohama/lexima.vim'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'szw/vim-ctrlspace'
-NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'vim-pandoc/vim-pandoc'
+NeoBundle 'vim-pandoc/vim-pandoc-syntax'
+NeoBundle 'reedes/vim-pencil'
 NeoBundle 'vim-voom/VOoM'
+NeoBundle 'junegunn/goyo.vim'
 NeoBundle 'ruedigerha/vim-fullscreen', { 'gui': 1 }
 
 call neobundle#end()
@@ -158,8 +161,12 @@ let g:airline_powerline_fonts = 1
 let g:airline_exclude_preview = 1   " for CtrlSpace
 let g:airline#extensions#whitespace#enabled = 0
 
-" vim-markdown configuration
-let g:vim_markdown_folding_disabled=1
+" vim-pandoc configuration
+let g:pandoc#modules#disabled = ['folding', 'chdir']
+
+" vim-pandoc-syntax configuration
+let g:pandoc#syntax#codeblocks#embeds#langs = ['cpp', 'haskell', 'swift']
+let g:pandoc#syntax#conceal#urls = 1
 
 " Lexima rules
 let g:lexima_no_default_rules = 1
@@ -205,6 +212,9 @@ NeoBundleCheck
 autocmd FileType c,cpp setlocal number cindent undofile
 autocmd FileType objc setlocal number cindent cinwords=if,else,while,do,for,switch,[
 autocmd FileType haskell setlocal number autoindent undofile
-autocmd FileType mkd setlocal softtabstop=4 shiftwidth=4 autoindent linebreak nojoinspaces textwidth=80 formatoptions=tnaw undofile
-autocmd FileType mkd nnoremap <leader>m :silent !open -a 'Marked 2.app' '%:p'<cr>
+autocmd FileType pandoc call pencil#init({'conceallevel': 2})
+autocmd FileType pandoc setlocal softtabstop=4 shiftwidth=4 autoindent linebreak nojoinspaces undofile
+if has("mac")
+  autocmd FileType pandoc nnoremap <buffer> <leader>m :silent !open -a 'Marked 2.app' '%:p'<cr>
+endif
 
