@@ -54,7 +54,6 @@ NeoBundle 'thinca/vim-unite-history', { 'depends': 'Shougo/unite.vim' }
 NeoBundle 'osyo-manga/unite-quickfix', { 'depends': 'Shougo/unite.vim' }
 NeoBundle 'Shougo/vimfiler', { 'depends': 'Shougo/unite.vim' }
 NeoBundle 'Shougo/neomru.vim', { 'depends': 'Shougo/unite.vim' }
-NeoBundle 'scrooloose/syntastic'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'gregsexton/gitv', { 'depends': 'tpope/vim-fugitive' }
 NeoBundle 'easymotion/vim-easymotion'
@@ -133,6 +132,9 @@ let g:necoghc_enable_detailed_browse = 1
 " haskell-vim configuration
 let g:haskell_enable_quantification = 1
 
+" ghcmod-vim configuration
+autocmd BufWritePost *.hs GhcModCheckAndLintAsync
+
 " Unite configuration
 let g:unite_data_directory = my_plugin_cache_path . 'unite'
 call unite#custom#profile('default', 'context', {
@@ -142,15 +144,6 @@ call unite#custom#profile('default', 'context', {
 " Easy Align configuration
 vmap <Enter> <Plug>(EasyAlign)
 nmap <Leader>a <Plug>(EasyAlign)
-
-" Syntastic configuration (for now off by default)
-let g:syntastic_mode_map = { 'mode': 'passive',
-                           \ 'active_filetypes': ['haskell'],
-                           \ 'passive_filetypes': [] }
-let g:syntastic_aggregate_errors = 1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_wq = 0
 
 " VimFiler configuration
 let g:vimfiler_as_default_explorer = 1
@@ -204,6 +197,18 @@ nmap <silent> <leader>uc :Unite history/command<CR>
 nmap <silent> <leader>us :Unite history/search<CR>
 let g:unite_source_history_yank_enable = 1
 nmap <silent> <leader>uy :Unite history/yank<CR>
+
+" Keybindings for Quickfix List navigation
+nmap <silent> <leader>cc :cc<CR>
+nmap <silent> <leader>cj :cnext<CR>
+nmap <silent> <leader>ck :cprevious<CR>
+nmap <silent> <leader>cq :cclose<CR>
+
+" Keybindings for Location List navigation
+nmap <silent> <leader>ll :ll<CR>
+nmap <silent> <leader>lj :lnext<CR>
+nmap <silent> <leader>lk :lprevious<CR>
+nmap <silent> <leader>lq :lclose<CR>
 
 filetype plugin indent on
 
