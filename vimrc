@@ -15,69 +15,68 @@ if has('win32')
   let &viminfo = &viminfo . ',n' . my_vimlib_path . '/viminfo'
 endif
 
-" Start neobundle
-if has('vim_starting')
-  set runtimepath^=$MYVIMLIBRARY/bundle/neobundle.vim/
+" Check for dein install
+if empty(globpath(my_vimlib_path, '/plugins/repos/github.com/Shougo/dein.vim'))
+  if !executable('git')
+    echoerr "Need 'git' installed"
+  endif
+  let install_path = my_vimlib_path . '/plugins/repos/github.com/Shougo/dein.vim'
+  call system('git clone https://github.com/Shougo/dein.vim "' . install_path . '"')
 endif
-if has('win32')
-  let g:neobundle#types#git#default_protocol = 'https'
-endif
-call neobundle#begin(expand(my_vimlib_path . '/bundle/'))
+
+" Start dein
+set runtimepath^=$MYVIMLIBRARY/plugins/repos/github.com/Shougo/dein.vim
+call dein#begin(expand(my_vimlib_path . '/plugins/'))
 
 " Bundles
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimproc', {
+call dein#add('Shougo/dein.vim')
+call dein#add('Shougo/vimproc', {
               \ 'build' : {
               \     'windows' : 'tools\\update-dll-mingw',
               \     'cygwin' : 'make -f make_cygwin.mak',
               \     'mac' : 'make -f make_mac.mak',
               \     'unix' : 'make -f make_unix.mak',
               \    },
-              \ }
+              \ })
 
-NeoBundle 'Shougo/neocomplete'
-NeoBundle 'SirVer/ultisnips'
-NeoBundle 'honza/vim-snippets', { 'depends': 'SirVer/ultisnips' }
-NeoBundle 'eagletmt/neco-ghc', { 'external_commands': 'ghc-mod' }
-NeoBundle 'eagletmt/ghcmod-vim', { 'external_commands': 'ghc-mod' }
-NeoBundle 'neovimhaskell/haskell-vim'
-NeoBundle 'tomtom/tcomment_vim'
-NeoBundle 'mbbill/undotree'
-NeoBundle 'oceandeep'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'chriskempson/base16-vim'
-NeoBundle 'junegunn/vim-easy-align'
-NeoBundle 'eagletmt/unite-haddock', { 'depends': 'Shougo/unite.vim' }
-NeoBundle 'ujihisa/unite-colorscheme', { 'depends': 'Shougo/unite.vim' }
-NeoBundle 'tsukkee/unite-tag', { 'depends': 'Shougo/unite.vim' }
-NeoBundle 'thinca/vim-unite-history', { 'depends': 'Shougo/unite.vim' }
-NeoBundle 'osyo-manga/unite-quickfix', { 'depends': 'Shougo/unite.vim' }
-NeoBundle 'Shougo/vimfiler', { 'depends': 'Shougo/unite.vim' }
-NeoBundle 'Shougo/neomru.vim', { 'depends': 'Shougo/unite.vim' }
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'gregsexton/gitv', { 'depends': 'tpope/vim-fugitive' }
-NeoBundle 'easymotion/vim-easymotion'
-NeoBundle 'kana/vim-textobj-indent', { 'depends': 'kana/vim-textobj-user' }
-NeoBundle 'bkad/CamelCaseMotion'
-NeoBundle 'cohama/lexima.vim'
-NeoBundle 'vim-airline/vim-airline'
-NeoBundle 'vim-ctrlspace/vim-ctrlspace'
-NeoBundle 'vim-pandoc/vim-pandoc'
-NeoBundle 'vim-pandoc/vim-pandoc-syntax'
-NeoBundle 'reedes/vim-pencil'
-NeoBundle 'vim-voom/VOoM'
-NeoBundle 'junegunn/goyo.vim'
-NeoBundle 'ruedigerha/vim-fullscreen', { 'gui': 1 }
+call dein#add('Shougo/neocomplete')
+call dein#add('SirVer/ultisnips')
+call dein#add('honza/vim-snippets', { 'depends': 'ultisnips' })
+call dein#add('eagletmt/neco-ghc', { 'external_commands': 'ghc-mod' })
+call dein#add('eagletmt/ghcmod-vim', { 'external_commands': 'ghc-mod' })
+call dein#add('neovimhaskell/haskell-vim')
+call dein#add('tomtom/tcomment_vim')
+call dein#add('mbbill/undotree')
+call dein#add('oceandeep')
+call dein#add('altercation/vim-colors-solarized')
+call dein#add('chriskempson/base16-vim')
+call dein#add('junegunn/vim-easy-align')
+call dein#add('Shougo/unite.vim')
+call dein#add('eagletmt/unite-haddock', { 'depends': 'unite.vim' })
+call dein#add('ujihisa/unite-colorscheme', { 'depends': 'unite.vim' })
+call dein#add('tsukkee/unite-tag', { 'depends': 'unite.vim' })
+call dein#add('thinca/vim-unite-history', { 'depends': 'unite.vim' })
+call dein#add('osyo-manga/unite-quickfix', { 'depends': 'unite.vim' })
+call dein#add('Shougo/vimfiler', { 'depends': 'unite.vim' })
+call dein#add('Shougo/neomru.vim', { 'depends': 'unite.vim' })
+call dein#add('tpope/vim-fugitive')
+call dein#add('gregsexton/gitv', { 'depends': 'vim-fugitive' })
+call dein#add('easymotion/vim-easymotion')
+call dein#add('kana/vim-textobj-user')
+call dein#add('kana/vim-textobj-indent', { 'depends': 'vim-textobj-user' })
+call dein#add('bkad/CamelCaseMotion')
+call dein#add('cohama/lexima.vim')
+call dein#add('vim-airline/vim-airline')
+call dein#add('vim-airline/vim-airline-themes')
+call dein#add('vim-ctrlspace/vim-ctrlspace')
+call dein#add('vim-pandoc/vim-pandoc')
+call dein#add('vim-pandoc/vim-pandoc-syntax')
+call dein#add('reedes/vim-pencil')
+call dein#add('vim-voom/VOoM')
+call dein#add('junegunn/goyo.vim')
+call dein#add('ruedigerha/vim-fullscreen', { 'gui': 1 })
 
-call neobundle#end()
-
-" Installation check.
-if neobundle#exists_not_installed_bundles()
-  echomsg 'Not installed bundles : ' .
-        \ string(neobundle#get_not_installed_bundle_names())
-  echomsg 'Please execute ":NeoBundleInstall" command.'
-  "finish
-endif
+call dein#end()
 
 set completeopt-=preview
 set softtabstop=2
@@ -212,7 +211,9 @@ nmap <silent> <leader>lq :lclose<CR>
 
 filetype plugin indent on
 
-NeoBundleCheck
+if dein#check_install()
+  call dein#install()
+endif
 
 autocmd FileType c,cpp setlocal number cindent undofile
 autocmd FileType objc setlocal number cindent cinwords=if,else,while,do,for,switch,[
