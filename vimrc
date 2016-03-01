@@ -39,18 +39,23 @@ call dein#add('Shougo/vimproc', {
               \    },
               \ })
 
+" Completion
 call dein#add('Shougo/neocomplete')
+call dein#add('cohama/lexima.vim')
 call dein#add('SirVer/ultisnips')
 call dein#add('honza/vim-snippets', { 'depends': 'ultisnips' })
-call dein#add('eagletmt/neco-ghc', { 'external_commands': 'ghc-mod' })
-call dein#add('eagletmt/ghcmod-vim', { 'external_commands': 'ghc-mod' })
-call dein#add('neovimhaskell/haskell-vim')
+
+" Editing and formatting
 call dein#add('tomtom/tcomment_vim')
-call dein#add('mbbill/undotree')
-call dein#add('oceandeep')
-call dein#add('altercation/vim-colors-solarized')
-call dein#add('chriskempson/base16-vim')
 call dein#add('junegunn/vim-easy-align')
+call dein#add('kana/vim-textobj-user')
+call dein#add('kana/vim-textobj-indent', { 'depends': 'vim-textobj-user' })
+
+" Navigation
+call dein#add('easymotion/vim-easymotion')
+call dein#add('bkad/CamelCaseMotion')
+
+" Unite
 call dein#add('Shougo/unite.vim')
 call dein#add('eagletmt/unite-haddock', { 'depends': 'unite.vim' })
 call dein#add('ujihisa/unite-colorscheme', { 'depends': 'unite.vim' })
@@ -59,20 +64,34 @@ call dein#add('thinca/vim-unite-history', { 'depends': 'unite.vim' })
 call dein#add('osyo-manga/unite-quickfix', { 'depends': 'unite.vim' })
 call dein#add('Shougo/vimfiler', { 'depends': 'unite.vim' })
 call dein#add('Shougo/neomru.vim', { 'depends': 'unite.vim' })
+
+" Document / project structure
+call dein#add('vim-ctrlspace/vim-ctrlspace')
+call dein#add('vim-voom/VOoM')
+
+" Haskell
+call dein#add('eagletmt/neco-ghc', { 'external_commands': 'ghc-mod' })
+call dein#add('eagletmt/ghcmod-vim', { 'external_commands': 'ghc-mod' })
+call dein#add('neovimhaskell/haskell-vim')
+
+" Source control
 call dein#add('tpope/vim-fugitive')
 call dein#add('gregsexton/gitv', { 'depends': 'vim-fugitive' })
-call dein#add('easymotion/vim-easymotion')
-call dein#add('kana/vim-textobj-user')
-call dein#add('kana/vim-textobj-indent', { 'depends': 'vim-textobj-user' })
-call dein#add('bkad/CamelCaseMotion')
-call dein#add('cohama/lexima.vim')
-call dein#add('vim-airline/vim-airline')
-call dein#add('vim-airline/vim-airline-themes')
-call dein#add('vim-ctrlspace/vim-ctrlspace')
+
+" Markdown & writing
 call dein#add('vim-pandoc/vim-pandoc')
 call dein#add('vim-pandoc/vim-pandoc-syntax')
 call dein#add('reedes/vim-pencil')
-call dein#add('vim-voom/VOoM')
+
+" Colorschemes
+call dein#add('chriskempson/base16-vim')
+call dein#add('altercation/vim-colors-solarized')
+call dein#add('oceandeep')
+
+" User interface
+call dein#add('mbbill/undotree')
+call dein#add('vim-airline/vim-airline')
+call dein#add('vim-airline/vim-airline-themes')
 call dein#add('junegunn/goyo.vim')
 call dein#add('ruedigerha/vim-fullscreen', { 'gui': 1 })
 
