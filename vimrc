@@ -125,7 +125,7 @@ set termguicolors
 colorscheme base16-ocean
 
 syntax on
-let mapleader='-'
+let mapleader=' '
 
 " NeoComplete configuration
 let g:neocomplete#enable_at_startup = 1
