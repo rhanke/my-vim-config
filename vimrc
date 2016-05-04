@@ -120,17 +120,8 @@ if finddir(&undodir) == ''
   call mkdir(&undodir)
 endif
 
-" Base16 colors
-if !has('gui_running')
-  let g:base16_shell_path = '~/.config/base16-shell'
-  if finddir(g:base16_shell_path) == ''
-    unlet g:base16_shell_path
-  else
-    let base16colorspace=256
-  endif
-endif
-
 set background=dark
+set termguicolors
 colorscheme base16-ocean
 
 syntax on
