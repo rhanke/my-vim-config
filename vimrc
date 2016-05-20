@@ -170,6 +170,9 @@ let g:pandoc#modules#disabled = ['folding', 'chdir']
 let g:pandoc#syntax#codeblocks#embeds#langs = ['cpp', 'haskell', 'swift']
 let g:pandoc#syntax#conceal#urls = 1
 
+" vim-pencil configuration
+let g:pencil#conceallevel = 2
+
 " Lexima rules
 let g:lexima_no_default_rules = 1
 call lexima#set_default_rules()
