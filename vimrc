@@ -64,6 +64,7 @@ call dein#add('thinca/vim-unite-history', { 'depends': 'unite.vim' })
 call dein#add('osyo-manga/unite-quickfix', { 'depends': 'unite.vim' })
 call dein#add('Shougo/vimfiler', { 'depends': 'unite.vim' })
 call dein#add('Shougo/neomru.vim', { 'depends': 'unite.vim' })
+call dein#add('Shougo/neoyank.vim', { 'depends': 'unite.vim' })
 
 " Document / project structure
 call dein#add('vim-ctrlspace/vim-ctrlspace')
@@ -207,7 +208,6 @@ nmap <silent> <leader>uq :Unite -winheight=10 -direction=botright quickfix<CR>
 nmap <silent> <leader>ur :Unite file_mru<CR>
 nmap <silent> <leader>uc :Unite history/command<CR>
 nmap <silent> <leader>us :Unite history/search<CR>
-let g:unite_source_history_yank_enable = 1
 nmap <silent> <leader>uy :Unite history/yank<CR>
 
 " Keybindings for Quickfix List navigation
