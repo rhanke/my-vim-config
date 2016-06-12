@@ -50,9 +50,11 @@ call dein#add('tomtom/tcomment_vim')
 call dein#add('junegunn/vim-easy-align')
 call dein#add('kana/vim-textobj-user')
 call dein#add('kana/vim-textobj-indent', { 'depends': 'vim-textobj-user' })
+call dein#add('Julian/vim-textobj-variable-segment', { 'depends': 'vim-textobj-user' })
 
 " Navigation
 call dein#add('easymotion/vim-easymotion')
+call dein#add('aykamko/vim-easymotion-segments', { 'depends': 'vim-easymotion' })
 call dein#add('bkad/CamelCaseMotion')
 
 " Unite
@@ -173,6 +175,9 @@ let g:pandoc#syntax#conceal#urls = 1
 
 " vim-pencil configuration
 let g:pencil#conceallevel = 2
+
+" CamelCaseMotion
+call camelcasemotion#CreateMotionMappings('<leader>')
 
 " Lexima rules
 let g:lexima_no_default_rules = 1
